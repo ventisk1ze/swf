@@ -1,0 +1,36 @@
+{% load auth_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SWF</title>
+</head>
+<body>
+	<h1>SWF navbar</h1>
+	<nav>
+		<ul>
+			{% if user.is_authenticated %}
+			<li>
+				<h1>You are now logged in as {{ user.username }}</h1>
+				<form action="{% url 'logout' %}" method="post">
+					{% csrf_token %}
+					<button type="Submit">Logout</button>
+				</form>
+			</li>
+			{% if request.user|hasGroup:"Employers" %}
+			<li><a href="{% url 'addvacancy'%}">Add vacancy</a></li>
+			{% else %}
+			<li><a href="{% url 'vacancyList'%}">All vacancies</a></li>
+			{% endif %}
+			{% else %}
+			<li><a href="{% url 'login'%}">Login</a></li>
+			{% endif %}
+			<li><a href="{% url 'registerappl'%}">Register as an applicant</a></li>
+			<li><a href="{% url 'registerhr'%}">Register as an employer</a></li>
+			
+		</ul>
+	</nav>
+{% block content %}
+replace me
+{% endblock %}
+</body>
+</html>

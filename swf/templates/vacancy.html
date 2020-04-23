@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>
+	{{ obj.name }}
+	{{ obj.company.name }}
+</h1>
+<body>
+	{{ obj.competences }}
+	{{ obj.salary }}
+	{{ obj.description }}
+</body>
+{% endblock %}

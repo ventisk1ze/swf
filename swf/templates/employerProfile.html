@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Employer Profile</h1>
+<ul>
+	<li> {{ obj.name }}</li>
+	<li> {{ obj.description }}</li>
+</ul>
+<a href="{% url 'ProfileUpdate' %}">Update profile</a>
+{% endblock %}
