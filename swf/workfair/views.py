@@ -27,7 +27,7 @@ def EmplRegisterView(request):
 	else:
 		if request.user.is_authenticated:
 			logout(request)
-			form = UserCreationForm()
+		form = UserCreationForm()
 	context = {
 		'form':form,
 	}
@@ -46,7 +46,7 @@ def ApplRegisterView(request):
 	else:
 		if request.user.is_authenticated:
 			logout(request)
-			form = UserCreationForm()
+		form = UserCreationForm()
 	context = {
 		'form':form,
 	}
