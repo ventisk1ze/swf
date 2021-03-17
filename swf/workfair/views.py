@@ -14,6 +14,7 @@ from django.contrib.auth.models import Group, User
 
 from django.contrib.auth.decorators import login_required
 
+
 def EmplRegisterView(request):
 	
 	if request.method == 'POST':
@@ -106,7 +107,7 @@ def profileSetupView(request):
 			if form.is_valid():
 				form.instance.username = request.user
 				form.save()
-				return redirect('applicantProfile')
+				return redirect('profile')
 		else:
 			form = ApplicantProfileEdit()
 
@@ -116,7 +117,7 @@ def profileSetupView(request):
 			if form.is_valid():
 				form.instance.username = request.user
 				form.save()
-				return redirect('employerProfile')
+				return redirect('profile')
 		else:
 			form = EmployerProfileEdit()
 	context = {

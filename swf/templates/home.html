@@ -1,15 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>SWF</title>
-</head>
-<body>
-	<h1>Welcome to SWF</h1>  
-	<a href="{% url 'profile' %}">Profile </a>
-	
-</body>
-</html>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-8 p-main">
+			<h1>Добро пожаловать на SWF!</h1>
+			<p>
+				SWF это платформа где студенты могут найти работу по специальности или для получения производственной практики
+			</p>
+		</div>
+	</div>
+</div>
+
+<style>
+.p-main {
+	font-size: 24px;
+  text-align: center;
+}
+h1 {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+
+</style>
 {% endblock %}
