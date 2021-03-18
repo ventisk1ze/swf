@@ -23,6 +23,7 @@ class Vacancy(models.Model):
 	description = models.TextField(null = True)
 	company = models.ForeignKey(EmployerProfile, on_delete = models.CASCADE)
 	featured = models.BooleanField(default = False)
+	viewsAmount = models.IntegerField(default = 0)
 
 	def getAbsoluteUrl(self):
 		return f"/vacancy/{self.id}/"

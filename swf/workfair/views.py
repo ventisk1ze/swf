@@ -156,6 +156,8 @@ def homeView(request):
 @login_required(login_url = 'login')
 def dynamicVacancyView(request, id):
 	obj = get_object_or_404(Vacancy, id = id)
+	obj.viewsAmount += 1
+	obj.save()
 	context = {
 		'obj' : obj
 	}
