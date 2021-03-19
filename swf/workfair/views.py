@@ -14,6 +14,7 @@ from django.contrib.auth.models import Group, User
 
 from django.contrib.auth.decorators import login_required
 
+from django.db.models import Q
 
 def EmplRegisterView(request):
 	
@@ -165,7 +166,13 @@ def dynamicVacancyView(request, id):
 
 @login_required(login_url = 'login')
 def vacancyListView(request):
-	queryset = Vacancy.objects.all()
+	search_query = request.GET.get('search', '')
+
+	if search_query:
+		queryset = Vacancy.objects.filter(Q(name__icontains = search_query) | Q(competences__icontains = search_query) | Q(salary__icontains = search_query)) 
+	else:
+		queryset = Vacancy.objects.all()
+
 	context = {
 		'objectList':queryset
 	}

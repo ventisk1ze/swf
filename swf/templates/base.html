@@ -37,8 +37,8 @@
 
 				{% if user.is_authenticated %}
 				<div class="col-4 header-bc">
-					<form class="form-inline search-form">
-						<input class="form-control" type="search" placeholder="Поиск вакансии" aria-label="Поиск вакансии">
+					<form class="form-inline search-form" action="{% url 'vacancyList' %}">
+						<input class="form-control" type="search" placeholder="Поиск вакансии" aria-label="Поиск вакансии" name = "search">
 						<button class="btn-outline-success" type="submit">Поиск</button>
 					</form>
 				</div>
