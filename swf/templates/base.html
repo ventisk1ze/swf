@@ -34,22 +34,27 @@
 
 				{% endif %}
 				</div>
+
+				{% if user.is_authenticated %}
+				<div class="col-4 header-bc">
+					<form class="form-inline search-form">
+						<input class="form-control" type="search" placeholder="Поиск вакансии" aria-label="Поиск вакансии">
+						<button class="btn-outline-success" type="submit">Поиск</button>
+					</form>
+				</div>
+				{% else %}
 				<div class="col-2 header-bc">
-					{% if user.is_authenticated %}
-					{% else %}
 						<form class="reg-form" action="{% url 'registerappl'%}">
 							<button class="logout btn-primary" type="Submit">Я соискатель</button>
 						</form>
-					{% endif %}
 				</div>
 				<div class="col-2 header-bc">
-					{% if user.is_authenticated %}
-					{% else %}
 						<form class="reg-form" action="{% url 'registerhr'%}">
 							<button class="logout btn-primary" type="Submit">Я работодатель</button>
 						</form>
-					{% endif %}
 				</div>
+				{% endif %}
+
 				<div class="col-1 header-bc">
 					{% if user.is_authenticated %}
 						<form action="{% url 'logout' %}" method="post">
@@ -108,9 +113,20 @@ body {
 .logout {
   margin-top: 10px;
   margin-bottom: 15px;
-  {% comment %} width: 250px; {% endcomment %}
 	border-radius: .25rem;
 	border: 1px solid transparent;
+}
+.search-form input {
+	width: calc(100% - 65px);
+	display: inline;
+	height: 28px;
+}
+.search-form button {
+	margin-top: 10px;
+  margin-bottom: 15px;
+	border-radius: .25rem;
+	border: 1px solid transparent;
+	border-color: #198754;
 }
 </style>
 </html>
