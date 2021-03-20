@@ -10,7 +10,7 @@
 				<input class="form-control" type="search" placeholder="Поиск вакансии" aria-label="Поиск вакансии">
 				<button class="btn-outline-success" type="submit">Поиск</button>
 			</form>
-			<form class="form-inline sort-form">
+			{% comment %} <form class="form-inline sort-form"> {% endcomment %}
 				<div class="custom-control custom-radio">
 					<input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required>
 					<label class="custom-control-label" for="customControlValidation2">Сортировать по популярности</label>
@@ -19,8 +19,8 @@
 					<input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required>
 					<label class="custom-control-label" for="customControlValidation3">Сортировать по дате добавления</label>
 				</div>
-				<button class="btn-outline-success" type="submit">Сортировать</button>
-			</form>
+				{% comment %} <button class="btn-outline-success" type="submit">Сортировать</button>
+			</form> {% endcomment %}
 		</div>
 		{% for instance in objectList %}
 		<div class="col-8 listVacancy-bc card">
@@ -86,7 +86,7 @@
 	display: inline-block;
 	margin-right: 50px;
 }
-.sort-form {
+{% comment %} .sort-form {
 	display: inline;
 }
 .sort-form button {
@@ -95,6 +95,6 @@
 	border-radius: .25rem;
 	border: 1px solid transparent;
 	border-color: #198754;
-}
+} {% endcomment %}
 </style>
 {% endblock %}
