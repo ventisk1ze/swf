@@ -166,10 +166,15 @@ def dynamicVacancyView(request, id):
 
 @login_required(login_url = 'login')
 def vacancyListView(request):
-	search_query = request.GET.get('search', '')
+	searchQueryNavbar = request.GET.get('search_navbar', '')
+	searchQueryVLpage = request.GET.get('search_vlpage', '')
 
-	if search_query:
-		queryset = Vacancy.objects.filter(Q(name__icontains = search_query) | Q(competences__icontains = search_query) | Q(salary__icontains = search_query)) 
+	if searchQueryNavbar or searchQueryVLpage:
+		if searchQueryNavbar:
+			searchQuery = searchQueryNavbar
+		else:
+			searchQuery = searchQueryVLpage
+		queryset = Vacancy.objects.filter(Q(name__icontains = searchQuery) | Q(salary__icontains = searchQuery) | Q(competences__icontains = searchQuery))
 	else:
 		queryset = Vacancy.objects.all()
 
