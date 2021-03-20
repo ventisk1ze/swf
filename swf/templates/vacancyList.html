@@ -6,14 +6,21 @@
 	<div class="row justify-content-center">
 		<p class="col-8 p-main">Каталог вакансий</p>
 		<div class="col-8">
-			<div class="custom-control custom-radio">
-				<input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required>
-				<label class="custom-control-label" for="customControlValidation2">Сортировать по популярности</label>
-			</div>
-			<div class="custom-control custom-radio mb-3">
-				<input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required>
-				<label class="custom-control-label" for="customControlValidation3">Сортировать по дате добавления</label>
-			</div>
+			<form class="form-inline search-form">
+				<input class="form-control" type="search" placeholder="Поиск вакансии" aria-label="Поиск вакансии">
+				<button class="btn-outline-success" type="submit">Поиск</button>
+			</form>
+			<form class="form-inline sort-form">
+				<div class="custom-control custom-radio">
+					<input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required>
+					<label class="custom-control-label" for="customControlValidation2">Сортировать по популярности</label>
+				</div>
+				<div class="custom-control custom-radio mb-3">
+					<input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required>
+					<label class="custom-control-label" for="customControlValidation3">Сортировать по дате добавления</label>
+				</div>
+				<button class="btn-outline-success" type="submit">Сортировать</button>
+			</form>
 		</div>
 		{% for instance in objectList %}
 		<div class="col-8 listVacancy-bc card">
@@ -74,6 +81,20 @@
 	text-align: left;
   margin-top: 5px;
 	margin-left: 50px;
+}
+.custom-control {
+	display: inline-block;
+	margin-right: 50px;
+}
+.sort-form {
+	display: inline;
+}
+.sort-form button {
+	margin-top: 10px;
+  margin-bottom: 15px;
+	border-radius: .25rem;
+	border: 1px solid transparent;
+	border-color: #198754;
 }
 </style>
 {% endblock %}
