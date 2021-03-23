@@ -30,14 +30,8 @@ class EmployerProfileEdit(forms.ModelForm):
 			'name',
 			'description',
 		]
-
-# class CustomAuntethicationForm(AuthenticationForm):
-# 	username = UsernameField(
-# 		label = 'Логин',
-# 		widget = forms.TextInput(attrs={'autofocus': True})
-# 	)
-# 	password = PasswordField(
-# 		label = 'Пароль',
-# 		widget = forms.TextInput(attrs={'autofocus': True})
-# 	)
+class sortChoice(forms.Form):
+	CHOICES = [('sbd', 'Сортировать по дате'),
+				('sbp', 'Сортировать по популярности')]
+	choice = forms.ChoiceField(choices = CHOICES, widget = forms.RadioSelect, label = 'Сортировка по')
 	

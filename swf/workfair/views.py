@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from django.http import HttpResponse, Http404
 
-from .forms import VacancyAddForm, ApplicantProfileEdit, EmployerProfileEdit
+from .forms import VacancyAddForm, ApplicantProfileEdit, EmployerProfileEdit, sortChoice
 
 from .models import ApplicantProfile, EmployerProfile, Vacancy
 
@@ -169,16 +169,24 @@ def vacancyListView(request):
 	searchQueryNavbar = request.GET.get('search_navbar', '')
 	searchQueryVLpage = request.GET.get('search_vlpage', '')
 
+	form = sortChoice()
+	
+
 	if searchQueryNavbar or searchQueryVLpage:
 		if searchQueryNavbar:
 			searchQuery = searchQueryNavbar
 		else:
 			searchQuery = searchQueryVLpage
-		queryset = Vacancy.objects.filter(Q(name__icontains = searchQuery) | Q(salary__icontains = searchQuery) | Q(competences__icontains = searchQuery)).order_by('-viewsAmount')
+		if form['choice'] == 'sbp':
+			queryset = Vacancy.objects.filter(Q(name__icontains = searchQuery) | Q(salary__icontains = searchQuery) | Q(competences__icontains = searchQuery)).order_by('-viewsAmount')
+		if form['choice'] == 'sbd':
+			queryset = Vacancy.objects.filter(Q(name__icontains = searchQuery) | Q(salary__icontains = searchQuery) | Q(competences__icontains = searchQuery)).order_by('-creationDate')
+
 	else:
-		queryset = Vacancy.objects.all()
+		queryset = Vacancy.objects.all().order_by('-viewsAmount')
 
 	context = {
-		'objectList':queryset
+		'objectList':queryset,
+		'form':form
 	}
 	return render(request, "vacancyList.html", context)
