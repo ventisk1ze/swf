@@ -174,7 +174,7 @@ def vacancyListView(request):
 			searchQuery = searchQueryNavbar
 		else:
 			searchQuery = searchQueryVLpage
-		queryset = Vacancy.objects.filter(Q(name__icontains = searchQuery) | Q(salary__icontains = searchQuery) | Q(competences__icontains = searchQuery))
+		queryset = Vacancy.objects.filter(Q(name__icontains = searchQuery) | Q(salary__icontains = searchQuery) | Q(competences__icontains = searchQuery)).order_by('-viewsAmount')
 	else:
 		queryset = Vacancy.objects.all()
 

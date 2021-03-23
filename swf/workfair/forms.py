@@ -12,6 +12,7 @@ class VacancyAddForm(forms.ModelForm):
 			'competences',
 			'description',
 			'salary',
+			'phoneNumber',
 		]
 class ApplicantProfileEdit(forms.ModelForm):
 	class Meta:

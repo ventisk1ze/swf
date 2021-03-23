@@ -25,6 +25,7 @@ class Vacancy(models.Model):
 	featured = models.BooleanField(default = False)
 	viewsAmount = models.IntegerField(default = 0)
 	creationDate = models.DateTimeField(auto_now = True)
+	phoneNumber = models.IntegerField(default = 89990870968)
 
 	def getAbsoluteUrl(self):
 		return f"/vacancy/{self.id}/"
