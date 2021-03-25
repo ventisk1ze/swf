@@ -31,7 +31,7 @@ class EmployerProfileEdit(forms.ModelForm):
 			'description',
 		]
 class sortChoice(forms.Form):
-	CHOICES = [('sbd', 'Сортировать по дате'),
-				('sbp', 'Сортировать по популярности')]
-	choice = forms.ChoiceField(choices = CHOICES, widget = forms.RadioSelect, label = 'Сортировка по')
+	CHOICES = [('creationDate', 'Сортировать по дате'),
+				('viewsAmount', 'Сортировать по популярности'),]
+	choice = forms.ChoiceField(choices = CHOICES, widget = forms.RadioSelect, label = 'Сортировка по', required = False)
 	

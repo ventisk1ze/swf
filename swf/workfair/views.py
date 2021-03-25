@@ -157,7 +157,9 @@ def homeView(request):
 @login_required(login_url = 'login')
 def dynamicVacancyView(request, id):
 	obj = get_object_or_404(Vacancy, id = id)
+	oldDate = obj.creationDate
 	obj.viewsAmount += 1
+	obj.creationDate = oldDate
 	obj.save()
 	context = {
 		'obj' : obj
@@ -169,21 +171,22 @@ def vacancyListView(request):
 	searchQueryNavbar = request.GET.get('search_navbar', '')
 	searchQueryVLpage = request.GET.get('search_vlpage', '')
 
-	form = sortChoice()
-	
+	form = sortChoice(request.GET or request.POST)
+	print(request.GET)
 
 	if searchQueryNavbar or searchQueryVLpage:
 		if searchQueryNavbar:
 			searchQuery = searchQueryNavbar
 		else:
 			searchQuery = searchQueryVLpage
-		if form['choice'] == 'sbp':
-			queryset = Vacancy.objects.filter(Q(name__icontains = searchQuery) | Q(salary__icontains = searchQuery) | Q(competences__icontains = searchQuery)).order_by('-viewsAmount')
-		if form['choice'] == 'sbd':
-			queryset = Vacancy.objects.filter(Q(name__icontains = searchQuery) | Q(salary__icontains = searchQuery) | Q(competences__icontains = searchQuery)).order_by('-creationDate')
-
+		if form.is_valid():
+			selected = form.cleaned_data.get("choice")
+			if selected == 'viewsAmount':
+				queryset = Vacancy.objects.filter(Q(name__icontains = searchQuery) | Q(salary__icontains = searchQuery) | Q(competences__icontains = searchQuery)).order_by('-viewsAmount')
+			if selected == 'creationDate':
+				queryset = Vacancy.objects.filter(Q(name__icontains = searchQuery) | Q(salary__icontains = searchQuery) | Q(competences__icontains = searchQuery)).order_by('-creationDate')
 	else:
-		queryset = Vacancy.objects.all().order_by('-viewsAmount')
+		queryset = Vacancy.objects.all().order_by('-creationDate')
 
 	context = {
 		'objectList':queryset,
